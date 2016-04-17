@@ -12,3 +12,6 @@ according to the user-specified name.
 
 The app is launched with the command `python start.py`, which starts the python server and loads 
 the html page in the default browser. 
+
+The 'path' on line 16 of `proto_gen.py` will need to be modified to the directory in which the 
+folder is placed. 
