@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+def main():
+	with open('proto.html','r') as f:
+		proto = f.read()
+	print 'content-type:text/html\n'
+	print proto
+if __name__ == '__main__':
+	main()

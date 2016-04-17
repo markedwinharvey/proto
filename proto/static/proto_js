@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+def main():
+	with open('static/proto.js','r') as f:
+		proto_js = f.read()
+	print 'content-type:text/html\n'
+	print proto_js
+if __name__ == '__main__':
+	main()
