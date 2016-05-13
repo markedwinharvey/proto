@@ -3,21 +3,18 @@
 `proto` is a web app prototype generator for creating a basic html/css/javascript/jquery/python
 framework for web apps, packaged with a python server set to run on localhost. 
 
-The generator can be run from any directory by placing a simple script in the .bashrc folder: 
-	proto(){
+The generator can be run from any directory by placing a simple script in the .bashrc folder: <br>
+	`proto(){
 		python file-path-to-proto-folder/proto_gen.py
-	}
+	}`
 
 The command
-	proto
+	`proto`
 then prompts for a filename, creates a directory of this name, and places all appropriately-renamed
 files and subfolders within it. A minified copy of jquery is included for off-line development. 
 
-The program can be invoked from any directory by using a bash script
-such as `proto(){python file-path-to-proto-folder/proto_gen.py}`. 
-
 The app is invoked from the command line with
-	python start.py
+	`python start.py`
 from inside the app's folder. 
 
 This starts a localhost server on port 8000 (if not already running) and opens the html page. 
