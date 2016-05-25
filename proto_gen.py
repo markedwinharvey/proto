@@ -28,19 +28,19 @@ def main():
 				p_file = filename+p_file[5:]
 			with open(filename+'/'+p_file,'w') as f:
 				f.write(doc)
-		#--------------generate static directory--------------#
-		else:														
-			subprocess.Popen(['mkdir '+filename+'/static'],shell=True)
-			static_list = subprocess.Popen(['ls '+path+p_file],stdout=subprocess.PIPE,shell=True).communicate()[0].split()
-			for static_file in static_list:
-				with open(path+p_file+'/'+static_file,'r') as f:
+		#--------------generate subfolders/contents--------------#
+		else:	
+			subprocess.Popen(['mkdir '+filename+'/'+p_file],shell=True)
+			files_in_subfolder = subprocess.Popen(['ls '+path+p_file],stdout=subprocess.PIPE,shell=True).communicate()[0].split()
+			for each_file in files_in_subfolder:
+				with open(path+p_file+'/'+each_file,'r') as f:
 					doc = f.read()
-				if static_file[:6] != 'jquery':						#do not alter static jquery min file
-					doc=doc.replace('proto',filename)				#substitute new name	
-				static_file = static_file.replace('proto',filename)
-				with open(filename+'/'+p_file+'/'+static_file,'w') as f:
+				if each_file[:6] != 'jquery' and each_file[:7] != 'angular':
+					doc=doc.replace('proto',filename)				#replace internal 'proto'
+				each_file = each_file.replace('proto',filename)		#replace filename 'proto'
+				with open(filename+'/'+p_file+'/'+each_file,'w') as f:
 					f.write(doc)
-					
+		
 	time.sleep(.5)
 	subprocess.Popen(['chmod +x '+filename+'/*'],shell=True)		#set permissions
 	subprocess.Popen(['chmod +x '+filename+'/static/*'],shell=True)
