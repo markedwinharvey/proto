@@ -1,8 +1,0 @@
-#!/usr/bin/env python
-def main():
-	with open('static/proto.css','r') as f:
-		proto_css = f.read()
-	print 'content-type: text/css\n'
-	print proto_css
-if __name__ == '__main__':
-	main()
