@@ -43,6 +43,6 @@ def main():
 		
 	time.sleep(.5)
 	subprocess.Popen(['chmod +x '+filename+'/*'],shell=True)		#set permissions
-	subprocess.Popen(['chmod +x '+filename+'/static/*'],shell=True)
+	subprocess.Popen(['chmod +x '+filename+'/cgi-bin/*'],shell=True)
 if __name__ == '__main__':
 	main()
