@@ -21,10 +21,11 @@ def main():
 		start_server()
 		
 	except:
-		time.sleep(.5)
 		
 		py_proc = sp.Popen(['ps -fA | grep python'],stdout=sp.PIPE,shell=True).communicate()[0]
 		serv_proc = sp.Popen(['ps -fA | grep server'],stdout=sp.PIPE,shell=True).communicate()[0]
+		
+		time.sleep(.5)
 		
 		print
 		print 'Cannot start server...'

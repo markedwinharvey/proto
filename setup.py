@@ -6,10 +6,10 @@ install from unpacked folder using `python setup.py install`
 from setuptools import setup
 
 def main():
+
 	setup(
 		name='proto',
 		version='0.1',
-		#scripts=['proto.py'],
 		packages=['proto'],
 		#install_requires=[''],
 		

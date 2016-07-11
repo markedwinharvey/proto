@@ -3,46 +3,63 @@
 web app prototype generator
 prompts for app name; copies and renames all files from proto folder
 '''
-import subprocess,os,time
+import subprocess as sp
+import filewalker as fw
+import sys
+import os
 
-def main():
-	#----------start program; get filename------------#
+def get_proto_name():
 	filename = raw_input('Enter prototype name: ')					#get filename
 	print '### New prototype:',filename,'###'
 	resp = ''
 	while resp not in list('ynq'):
-		resp = raw_input('Create this prototype? (y n q): ')		#verify creation
+		resp = raw_input('Create this prototype? (y n q): ')		#verify action
 	if resp in list('qn'):
-		print 'Exiting...';return
+		print 'Exiting...'
+		sys.exit()
+	return filename
+
+
+def main():
 	
-	#-----------create directory/files/subfolders---------#
-	subprocess.Popen(['mkdir '+filename],shell=True)				#create directory
-	home_dir = os.path.expanduser('~')
-	path = home_dir+'/p/proto/proto/'	
-	file_list = subprocess.Popen(['ls '+path],stdout=subprocess.PIPE,shell=True).communicate()[0].split()	#get proto file_list
-	for p_file in file_list:
-		if not os.path.isdir(path+p_file):
-			with open(path+p_file,'r') as f:
-				doc = f.read().replace('proto',filename)			#open proto file and substitute new name
-			if p_file[:5] == 'proto':
-				p_file = filename+p_file[5:]
-			with open(filename+'/'+p_file,'w') as f:
-				f.write(doc)
-		#--------------generate subfolders/contents--------------#
-		else:	
-			subprocess.Popen(['mkdir '+filename+'/'+p_file],shell=True)
-			files_in_subfolder = subprocess.Popen(['ls '+path+p_file],stdout=subprocess.PIPE,shell=True).communicate()[0].split()
-			for each_file in files_in_subfolder:
-				with open(path+p_file+'/'+each_file,'r') as f:
-					doc = f.read()
-				if each_file[:6] != 'jquery' and each_file[:7] != 'angular':
-					doc=doc.replace('proto',filename)				#replace internal 'proto'
-				each_file = each_file.replace('proto',filename)		#replace filename 'proto'
-				with open(filename+'/'+p_file+'/'+each_file,'w') as f:
-					f.write(doc)
+	filename = get_proto_name()
+	sp.Popen(['mkdir',filename])
+	
+	#--------walk the proto hierarchy--------#
+	root = os.path.dirname(__file__)
+	files,dirs,ftree = fw.walk(root=root)
+	
+	for dir in dirs:	#create all directories first
+		rel_path = dir.rel.replace('proto',filename)
+		sp.Popen(['mkdir',filename+'/'+rel_path])
+	
+	#--------do not comment in files_to_modify--------#
+	#The contents of the following files will be modified (other files will be modified in name only)
+	files_to_modify = [x for x in '''
 		
-	time.sleep(.5)
-	subprocess.Popen(['chmod +x '+filename+'/*'],shell=True)		#set permissions
-	subprocess.Popen(['chmod +x '+filename+'/cgi-bin/*'],shell=True)
+		proto
+		proto.html
+		setup.py
+		start.py
+		
+	'''.replace('\t','').split('\n') if x]
+	#--------do not comment in files_to_modify--------#
+	
+	for file in files:
+		if file.name in ['proto_gen.py','readme.md']:
+			continue
+		
+		rel_path = file.rel.replace('proto',filename)
+		with open(file.abs,'r') as f:
+			doc = f.read()
+		if file.name in files_to_modify:
+			doc = doc.replace('proto',filename)
+		with open(filename+'/'+rel_path,'w') as f:
+			f.write(doc)
+			
+		cmd = str('chmod +x '+filename+'/'+rel_path).split()
+		sp.Popen(cmd)
+		sp.Popen(['touch',filename+'/'+'readme.md'])
+
 if __name__ == '__main__':
 	main()

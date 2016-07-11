@@ -1,16 +1,16 @@
 #!/usr/bin/env python
-import subprocess
+import subprocess as sp
 import time
 
 
 def main():
 	try:
 		cmd = 'python server.py &'.split()
-		subprocess.Popen(cmd)
+		sp.Popen(cmd)
 		time.sleep(.5)	
 		
 		cmd = 'open http://localhost:8000/proto'.split()
-		subprocess.Popen(cmd)	#open in default browser
+		sp.Popen(cmd)	#open in default browser
 		
 	except:
 		time.sleep(.5)
