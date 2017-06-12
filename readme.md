@@ -1,9 +1,10 @@
 <h4>proto</h4>
 <h5>a web app prototype generator</h5>
-`proto` is a web app prototype generator for creating a basic html/css/javascript/jquery/python
+
+<b>proto</b> is a web app prototype generator for creating a basic html/css/javascript/jquery/python
 framework for web apps, packaged with a python server set to run on localhost. 
 
-By placing a simple function in .bashrc, the script can be run from any directory. 
+The app generator can be run from any directory by placing a simple script in .bashrc: 
 
 In .bashrc: 
 
@@ -11,14 +12,34 @@ In .bashrc:
 		python file-path-to-proto-folder/proto_gen.py
 	}
 
-The command `proto` then prompts for a filename, creates a directory of this name, and places all appropriately-renamed
-files and subfolders within it. A minified copy of jquery is included for off-line development. 
 
-The app is invoked from the command line with
-	`python start.py` 
-from inside the app's folder. 
+Usage (initialization):
 
-This starts a localhost server on port 8000 (if not already running) and opens the html page. 
+	$ proto
 
+	Enter prototype name: frodo
+	
+	### New prototype: frodo ###
+
+	Create this prototype? (y n q): y
+	
+
+Usage (starting server):
+	
+	$ cd frodo/frodo
+	
+	$ python start.py
+	
+	Enter port number or hit enter for default (8000): 8003
+	
+	Initializing server
+	
+	Starting new python server on port 8003...
+
+
+At this point, `localhost:8003/frodo` will open in the default browser, loading content from `frodo.html`. 	
+	
+`proto_gen.py` renames all files containing "proto" with the new proto name (e.g., "frodo"), as it copies each file to the new directory. 
+	
 `proto_gen.py` utilizes `filewalker.py` to walk proto's file hierarchy for the purpose of copying
 its contents into the new app directory. 
