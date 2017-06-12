@@ -11,13 +11,11 @@ In .bashrc:
 		python file-path-to-proto-folder/proto_gen.py
 	}
 
-The command
-	proto
-then prompts for a filename, creates a directory of this name, and places all appropriately-renamed
+The command `proto` then prompts for a filename, creates a directory of this name, and places all appropriately-renamed
 files and subfolders within it. A minified copy of jquery is included for off-line development. 
 
 The app is invoked from the command line with
-	python start.py
+	`python start.py` 
 from inside the app's folder. 
 
 This starts a localhost server on port 8000 (if not already running) and opens the html page. 

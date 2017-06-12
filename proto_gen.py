@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-'''
-web app prototype generator
-prompts for app name; copies and renames all files from proto folder
-'''
+'''	Web app prototype generator
+	Prompts for app name; copies and renames all files from proto folder'''
+	
 import subprocess as sp
 import filewalker as fw
 import sys
