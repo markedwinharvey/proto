@@ -14,8 +14,12 @@
 	<title>proto</title>
 	
 	<script>
-		function print(msg){$('#msgbox').append(msg);}	//print
-		function con(msg){console.log(msg);} //log to console
+		function print(msg){$('#msgbox').append(msg);}	// print to screen
+		function con(msg){console.log(msg);} 			// log to console
+		
+		$(document).ready(function(){
+			$('#msgbox').append('jquery ready');		// jquery tester
+		});
 		
 	</script>
 </head>
