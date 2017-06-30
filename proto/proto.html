@@ -7,6 +7,7 @@
 	<script type='text/javascript' src='http://localhost:8000/static/jquery2.2.3.min.js'></script>
 	
 	<!--	
+	<script type='text/javascript' src='static/jquery2.2.3.js'></script>
 	<script type='text/javascript' src='http://localhost:8000/static/angular1.4.5.min.js'></script>
 	<script type='text/javascript' src='https://code.jquery.com/jquery-2.1.3.js'></script>
 	
@@ -18,7 +19,7 @@
 		function con(msg){console.log(msg);} 			// log to console
 		
 		$(document).ready(function(){
-			$('#msgbox').append('jquery ready');		// jquery tester
+			$('#msgbox').html('jquery ready');		// jquery tester
 		});
 		
 	</script>
@@ -31,7 +32,7 @@
 	</div>
 	
 		
-	<div id='msgbox'></div>
+	<div id='msgbox'>jquery not loaded</div>
 	
 	<style>
 		.border{
