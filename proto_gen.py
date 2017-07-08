@@ -40,6 +40,7 @@ def main():
 		proto.html
 		setup.py
 		start.py
+		proto.js
 		
 	'''.replace('\t','').split('\n') if x]
 	#--------do not comment in files_to_modify--------#
