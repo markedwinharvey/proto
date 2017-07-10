@@ -9,7 +9,7 @@ print
 
 def test(data):
 	with open('TEST','w') as f:
-		f.write(data)
+		f.write( str(data) )
 
 def main():
 	data = json.loads(cgi.FieldStorage()['package'].value)
