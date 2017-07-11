@@ -43,3 +43,10 @@ At this point, `localhost:8003/frodo` will open in the default browser, loading 
 	
 `proto_gen.py` utilizes `filewalker.py` to walk proto's file hierarchy for the purpose of copying
 its contents into the new app directory. 
+
+
+-----
+
+
+Note that this readme file is a description of the use of the "proto" framework. 
+The file new_readme.md becomes the readme file of the new proto-based app. 
